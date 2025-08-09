@@ -39,12 +39,19 @@ def draw_square(height, outline):
     
     for i in range(height):
         print(height*star)
-    print('square')
+    # print('square')
 
 
 # TODO: Step 4
 def draw_triangle(height, outline):
-    print('triangle')
+
+    star = "*"
+
+    for i in range(height+1):
+        print(i*star)
+        height -= 1
+
+    # print('triangle')
 
 
 # TODO: Steps 2 to 4, 6 - add support for other shapes
@@ -53,6 +60,8 @@ def draw(shape, height, outline):
         draw_pyramid(height, outline)
     elif shape == "square".lower():
         draw_square(height, outline)
+    elif shape == "triangle".lower():
+        draw_triangle(height, outline)
 
 
 # TODO: Step 5 - get input from user to draw outline or solid
