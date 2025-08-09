@@ -2,21 +2,43 @@
 
 # TODO: Step 1 - get shape (it can't be blank and must be a valid shape!)
 def get_shape():
-    return 'pyramid'
+
+    shape = input("Enter a shape (1. Pyramid, 2. Square, 3. Triangle): ").lower()
+    return shape
 
 
 # TODO: Step 1 - get height (it must be int!)
 def get_height():
-    return 0
+
+    height = int(input("Enter a height between 3 - 80: "))
+    return height
 
 
 # TODO: Step 2
 def draw_pyramid(height, outline):
-    print('pyramid')
+
+    star = "*"
+    space = " "
+    count = height
+
+    for i in range(height+1):
+        print((count * space) + (i*star), end='')
+        print(((i-1)*star))
+        count -= 1
+    
+
+
+    # print('pyramid')
 
 
 # TODO: Step 3
 def draw_square(height, outline):
+    
+    star = "*"
+    # count = height
+    
+    for i in range(height):
+        print(height*star)
     print('square')
 
 
@@ -27,7 +49,10 @@ def draw_triangle(height, outline):
 
 # TODO: Steps 2 to 4, 6 - add support for other shapes
 def draw(shape, height, outline):
-    draw_pyramid(height, outline)
+    if shape == "pyramid".lower():
+        draw_pyramid(height, outline)
+    elif shape == "square".lower():
+        draw_square(height, outline)
 
 
 # TODO: Step 5 - get input from user to draw outline or solid
