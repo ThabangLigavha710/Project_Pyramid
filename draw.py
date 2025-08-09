@@ -21,11 +21,25 @@ def draw_pyramid(height, outline):
     space = " "
     count = height
 
-    for i in range(height+1):
-        print((count * space) + (i*star), end='')
-        print(((i-1)*star))
-        count -= 1
-    
+    if not outline:
+        for i in range(height+1):
+            print((count * space) + (i*star), end='')
+            print(((i-1)*star))
+            count -= 1
+    else:
+        inner_val = 1
+        for i in range(height):
+            if i == 1:
+                print((count * space) + (i*star))
+                count -= 1
+            elif i > 1:
+                print((count * space) + star, end='')
+                print((space * inner_val) + star)
+                inner_val += 2
+                # print(((i-1)*space) + star)
+                count -= 1
+        print((count * space) + star*(height + (height-1)))
+                
 
 
     # print('pyramid')
@@ -66,8 +80,14 @@ def draw(shape, height, outline):
 
 # TODO: Step 5 - get input from user to draw outline or solid
 def get_outline():
-    return False
 
+    outline = input("Outline Only (y/N)? ").lower()
+
+    if outline == "".strip() or outline == "n".lower().strip():
+        return False
+    else:
+        if outline == "y".lower().strip():
+            return True
 
 if __name__ == "__main__":
     shape_param = get_shape()
