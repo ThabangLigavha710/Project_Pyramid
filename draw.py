@@ -36,7 +36,6 @@ def draw_pyramid(height, outline):
                 print((count * space) + star, end='')
                 print((space * inner_val) + star)
                 inner_val += 2
-                # print(((i-1)*space) + star)
                 count -= 1
         print((count * space) + star*(height + (height-1)))
                 
@@ -49,12 +48,16 @@ def draw_pyramid(height, outline):
 def draw_square(height, outline):
     
     star = "*"
-    # count = height
     
-    for i in range(height):
-        print(height*star)
-    # print('square')
-
+    if not outline:
+        for i in range(height):
+            print(height*star)
+    else:
+        for i in range(height):
+            if i == 0 or i == height-1:
+                print(height*star)
+            else:
+                print(star + ((height-2)*" ") + star)
 
 # TODO: Step 4
 def draw_triangle(height, outline):
