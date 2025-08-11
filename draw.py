@@ -53,23 +53,37 @@ def draw_square(height, outline):
         for i in range(height):
             print(height*star)
     else:
+        count = 1
         for i in range(height):
             if i == 0 or i == height-1:
                 print(height*star)
             else:
                 print(star + ((height-2)*" ") + star)
+                count += 1
 
 # TODO: Step 4
 def draw_triangle(height, outline):
 
     star = "*"
+    orgin_height = height
 
-    for i in range(height+1):
-        print(i*star)
-        height -= 1
+    if not outline:
+        for i in range(height+1):
+            print(i*star)
+            height -= 1
+    else:
+        count = 1
+        for i in range(height):
+            if i == 1:
+                print(i*star)
+                height -= 1
+            elif i > 1:
+                print(star + (count*" ") + star)
+                count += 1
+                height -= 1
+        print((orgin_height*star)+star)
 
-    # print('triangle')
-
+   
 
 # TODO: Steps 2 to 4, 6 - add support for other shapes
 def draw(shape, height, outline):
