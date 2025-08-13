@@ -3,7 +3,7 @@
 # TODO: Step 1 - get shape (it can't be blank and must be a valid shape!)
 def get_shape():
 
-    shape = input("Enter a shape (1. Pyramid, 2. Square, 3. Triangle): ").lower()
+    shape = input("Enter a shape (1. Pyramid, 2. Square, 3. Triangle, 4. diamond): ").lower()
     return shape
 
 
@@ -39,9 +39,6 @@ def draw_pyramid(height, outline):
                 count -= 1
         print((count * space) + star*(height + (height-1)))
                 
-
-
-    # print('pyramid')
 
 
 # TODO: Step 3
@@ -84,15 +81,60 @@ def draw_triangle(height, outline):
         print((orgin_height*star)+star)
 
    
+def draw_diamond(height, outline):
+
+    star = "*"
+    space = " "
+    count = height
+    next_height = height-1
+    next_count = 1
+
+
+    if not outline:
+        for i in range(height+1):
+            print((count * space) + (i*star), end='')
+            print(((i-1)*star))
+            count -= 1
+
+        for j in range(next_height, -1, -1):
+            print((next_count * space) + (j*star), end='')
+            print(((j-1)*star))
+            next_count += 1   
+
+    else:
+        inner_val = 1
+        for i in range(height):
+            if i == 1:
+                print((count * space) + (i*star))
+                count -= 1
+            elif i > 1:
+                print((count * space) + star, end='')
+                print((space * inner_val) + star)
+                inner_val += 2
+                count -= 1
+
+        for j in range(next_height, -1, -1):
+            if j == 0:
+                print(((next_count)*space) + star)
+            else:
+                print((next_count * space) + star, end='')
+                print((space * inner_val) + star)
+                inner_val -= 2
+                next_count += 1  
+
+    print("diamond")
+
 
 # TODO: Steps 2 to 4, 6 - add support for other shapes
 def draw(shape, height, outline):
-    if shape == "pyramid".lower():
+    if shape == "1" or shape == "pyramid".lower():
         draw_pyramid(height, outline)
-    elif shape == "square".lower():
+    elif shape == "2" or shape == "square".lower():
         draw_square(height, outline)
-    elif shape == "triangle".lower():
+    elif shape == "3" or shape == "triangle".lower():
         draw_triangle(height, outline)
+    elif shape == "4" or shape == "diamond".lower():
+        draw_diamond(height, outline)
 
 
 # TODO: Step 5 - get input from user to draw outline or solid
