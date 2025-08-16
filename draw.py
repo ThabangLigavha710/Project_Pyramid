@@ -3,7 +3,8 @@
 # TODO: Step 1 - get shape (it can't be blank and must be a valid shape!)
 def get_shape():
 
-    shape = input("Enter a shape (1. Pyramid, 2. Square, 3. Triangle, 4. diamond): ").lower()
+    shape = input("Enter a shape (1. Pyramid, 2. Square, 3. Triangle, 4. diamond,"
+                  + " 5. hourglass): ").lower()
     return shape
 
 
@@ -122,7 +123,63 @@ def draw_diamond(height, outline):
                 inner_val -= 2
                 next_count += 1  
 
-    print("diamond")
+
+
+def draw_hourglass(height, outline):
+
+    star = "*"
+    space = " "
+    count = height
+    next_height = height-1
+    next_count = 1
+
+
+    if not outline:
+        for j in range(next_height+1, -1, -1):
+            if j != 0:
+                print((next_count * space) + (j*star), end='')
+                print(((j-1)*star))
+                next_count += 1
+        
+        for i in range(height+1):
+            if i != 0 and i != 1:
+                print(((count-1) * space) + (i*star), end='')
+                print(((i-1)*star))
+                count -= 1
+
+
+    else:
+        inner_val = ((next_height+1)*2)-4
+        origin_height = next_height
+        for j in range(next_height, -1, -1):
+            if origin_height == next_height:
+                print(((j+1)*star)*2)
+                origin_height = 0
+
+            elif j > 0:
+               
+                print((next_count * space) + star, end='')
+                print((space * inner_val) + star)
+                inner_val -= 2
+                next_count += 1
+
+        for i in range(height+1):
+            origin_height = height
+            if i == 1:
+                print(( count * space) + ((i+1)*star))
+                count -= 1
+                inner_val += 2
+            elif i > 1 and i < origin_height:
+                print((count * space) + star, end='')
+                print((space * inner_val) + star)
+                inner_val += 2
+                count -= 1
+            elif i == origin_height:
+                print((i*star)*2)
+                origin_height = 0
+            else:
+                count-=1
+
 
 
 # TODO: Steps 2 to 4, 6 - add support for other shapes
@@ -135,6 +192,8 @@ def draw(shape, height, outline):
         draw_triangle(height, outline)
     elif shape == "4" or shape == "diamond".lower():
         draw_diamond(height, outline)
+    elif shape == "5" or shape == "hourglass".lower():
+        draw_hourglass(height, outline)
 
 
 # TODO: Step 5 - get input from user to draw outline or solid
