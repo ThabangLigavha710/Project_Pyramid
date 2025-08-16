@@ -4,7 +4,7 @@
 def get_shape():
 
     shape = input("Enter a shape (1. Pyramid, 2. Square, 3. Triangle, 4. diamond,"
-                  + " 5. hourglass): ").lower()
+                  + " 5. hourglass, 6. rectangle): ").lower()
     return shape
 
 
@@ -181,6 +181,22 @@ def draw_hourglass(height, outline):
                 count-=1
 
 
+def draw_rectangle(height, outline):
+    star = "*"
+    
+    if not outline:
+        for i in range(height):
+            print(((height*2)-1)*star)
+    else:
+        count = 1
+        for i in range(height):
+            if i == 0 or i == height-1:
+                print(((height*2)-1)*star)
+            else:
+                print(star + ((((height*2)-1)-2)*" ") + star)
+                count += 1
+
+
 
 # TODO: Steps 2 to 4, 6 - add support for other shapes
 def draw(shape, height, outline):
@@ -194,6 +210,8 @@ def draw(shape, height, outline):
         draw_diamond(height, outline)
     elif shape == "5" or shape == "hourglass".lower():
         draw_hourglass(height, outline)
+    elif shape == "6" or shape == "rectangle".lower():
+        draw_rectangle(height, outline)
 
 
 # TODO: Step 5 - get input from user to draw outline or solid
