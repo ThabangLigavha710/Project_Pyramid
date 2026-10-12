@@ -1,0 +1,53 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Run unittest suite",
+			"type": "shell",
+			"command": "python -m unittest discover -v",
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "test"
+		},
+		{
+			"label": "Debug get_shape",
+			"type": "shell",
+			"command": "python -c \"from io import StringIO; from test_base import captured_io; import draw; with captured_io(StringIO('\\npyramid\\n')) as (out, err):\n    shape = draw.get_shape();\n    print(repr(shape));\n    print(repr(out.getvalue()))\"",
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "none"
+		},
+		{
+			"label": "Debug shaped input",
+			"type": "shell",
+			"command": "python debug_shape.py",
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "none"
+		},
+		{
+			"label": "Verify unittest suite",
+			"type": "shell",
+			"command": "cmd /c \"del debug_shape.py 2>nul & python -m unittest discover -v\"",
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "test"
+		},
+		{
+			"label": "Run final unittest check",
+			"type": "shell",
+			"command": "python -m unittest discover -v",
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "test"
+		},
+		{
+			"label": "Confirm all tests pass",
+			"type": "shell",
+			"command": "python -m unittest discover -v",
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "test"
+		}
+	]
+}
